@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost:10002/employees"
+           targetNamespace="http://localhost:10002/employees" elementFormDefault="qualified">
+
+    <xs:element name="createEmployeeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="request" type="tns:employeeRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createEmployeeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="errorResponseMessage" type="xs:string"/>
+                <xs:element name="response" type="tns:employeeResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="employeeRequest">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="documentType" type="xs:string"/>
+            <xs:element name="documentNumber" type="xs:string"/>
+            <xs:element name="birthDate" type="xs:date"/>
+            <xs:element name="jobStartDate" type="xs:date"/>
+            <xs:element name="cargo" type="xs:string"/>
+            <xs:element name="salary" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="employeeResponse">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="documentType" type="xs:string"/>
+            <xs:element name="documentNumber" type="xs:string"/>
+            <xs:element name="birthDate" type="xs:date"/>
+            <xs:element name="jobStartDate" type="xs:date"/>
+            <xs:element name="cargo" type="xs:string"/>
+            <xs:element name="salary" type="xs:decimal"/>
+            <xs:element name="age" type="xs:string"/>
+            <xs:element name="dateSinceJobStart" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>
