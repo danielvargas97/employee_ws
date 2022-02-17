@@ -67,7 +67,6 @@ class EmployeeServiceTest {
         assertThat(response.getResponse().getLastName()).isNotNull();
         assertThat(response.getResponse().getCargo()).isNotNull();
         assertThat(response.getResponse().getBirthDate()).isNotNull();
-        assertThat(response.getResponse().getSalary()).isPositive();
     }
 
     @Test

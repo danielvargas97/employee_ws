@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import static com.example.soap.employeeservice.service.EmployeeMapper.createEmployeeDto;
 import static com.example.soap.employeeservice.service.EmployeeMapper.createEmployeeResponse;
+import static com.example.soap.employeeservice.service.EmployeeMapper.createExistingEmployeeResponse;
 import static com.example.soap.employeeservice.service.EmployeeMapper.createFailedEmployeeResponse;
 
 /**
@@ -62,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             } else {
                 final var errorMessage = String.format("Employee with Type=%s and Number=%s already exists", requestDto.getDocumentType(), requestDto.getDocumentNumber());
                 log.warn(errorMessage);
-                return createEmployeeResponse(requestDto, "Error", "The employee already exists");
+                return createExistingEmployeeResponse(requestDto, "Error", "The employee already exists");
             }
         } catch (Exception ex) {
             log.error("Error while querying employee data", ex);

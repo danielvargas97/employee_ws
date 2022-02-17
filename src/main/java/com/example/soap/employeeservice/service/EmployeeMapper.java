@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static com.example.soap.employeeservice.common.util.EmployeeUtil.extractXMLGregorianDateFromLocalDate;
 import static com.example.soap.employeeservice.common.util.EmployeeUtil.extractDateFromXml;
@@ -60,6 +61,46 @@ public class EmployeeMapper {
                 .response(buildEmployeeResponse(employeeDto))
                 .build();
 
+    }
+
+
+    /**
+     * Create a {@linkplain CreateEmployeeResponse} object with already exist response.
+     *
+     * @param employeeDto a {@linkplain EmployeeDto} object with the employee data.
+     * @param status a status.
+     * @param errorMessage an message.
+     * @return a {@linkplain CreateEmployeeResponse} object with successful response.
+     */
+    public static CreateEmployeeResponse createExistingEmployeeResponse(final EmployeeDto employeeDto, final String status, final String errorMessage) {
+
+        return CreateEmployeeResponse.builder()
+                .errorResponseMessage(errorMessage)
+                .status(status)
+                .response(buildExistingEmployee(employeeDto))
+                .build();
+
+    }
+
+    /**
+     * Create the {@linkplain EmployeeResponse} object for an existing employee.
+     *
+     * @param employeeDto a {@linkplain EmployeeDto} object with employee data.
+     * @return a {@linkplain EmployeeResponse} object.
+     */
+    private static EmployeeResponse buildExistingEmployee(EmployeeDto employeeDto) {
+        return EmployeeResponse.builder()
+                .firstName("")
+                .lastName("")
+                .documentType(employeeDto.getDocumentType())
+                .documentNumber(employeeDto.getDocumentNumber().replaceAll("\\w+", "*"))
+                .cargo("")
+                .birthDate(extractXMLGregorianDateFromLocalDate(LocalDate.now()))
+                .jobStartDate(extractXMLGregorianDateFromLocalDate(LocalDate.now()))
+                .age("")
+                .dateSinceJobStart("")
+                .salary(BigDecimal.ZERO)
+                .build();
     }
 
     /**
